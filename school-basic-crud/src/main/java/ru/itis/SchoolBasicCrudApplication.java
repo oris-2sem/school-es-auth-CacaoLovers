@@ -9,23 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.itis.app.Client;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@AllArgsConstructor
 public class SchoolBasicCrudApplication {
-
-    /*public final Client client;
-
-    @Bean
-    public CommandLineRunner CommandLineRunnerBean() {
-        return (args) -> {
-            client.work();
-            client.workWithData();
-        };
-    }*/
-
 
     @Bean
     public ObjectMapper objectMapper(){

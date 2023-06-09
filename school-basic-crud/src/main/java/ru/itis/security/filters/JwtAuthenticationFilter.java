@@ -22,7 +22,7 @@ import java.util.Map;
 @Component
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     public static final String USERNAME_PARAMETER = "name";
-    public static final String AUTHENTICATION_URL = "auth/token";
+    public static final String AUTHENTICATION_URL = "/auth/token";
 
     private final ObjectMapper objectMapper;
     private final JwtAuthUtil jwtAuthUtil;
@@ -33,6 +33,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                    JwtAuthUtil jwtAuthUtil,
                                    AuthorizationRequestHeaderUtil authorizationRequestHeaderUtil) throws Exception {
         super(authenticationConfiguration.getAuthenticationManager());
+        super.setFilterProcessesUrl(AUTHENTICATION_URL);
+        super.setUsernameParameter(USERNAME_PARAMETER);
         this.objectMapper = objectMapper;
         this.jwtAuthUtil = jwtAuthUtil;
         this.authorizationRequestHeaderUtil = authorizationRequestHeaderUtil;
@@ -54,7 +56,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType("application/json");
 
         GrantedAuthority authority = authResult.getAuthorities().stream().findFirst().orElseThrow();
-        String name = ((UserDetail) authResult.getPrincipal()).getUsername();
+        String name = ((UserDetail)authResult.getPrincipal()).getUsername();
         String issuer = request.getRequestURL().toString();
 
         Map<String, String> tokens = jwtAuthUtil.generateTokens(name, authority.getAuthority(), issuer);

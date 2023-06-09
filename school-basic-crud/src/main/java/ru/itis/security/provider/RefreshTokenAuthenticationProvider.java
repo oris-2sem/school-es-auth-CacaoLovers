@@ -18,7 +18,7 @@ public class RefreshTokenAuthenticationProvider implements AuthenticationProvide
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String refreshToken = (String) authentication.getCredentials();
 
-            return jwtAuthUtil.buildAuthentication(refreshToken);
+        return jwtAuthUtil.buildAuthentication(refreshToken);
 
 
     }

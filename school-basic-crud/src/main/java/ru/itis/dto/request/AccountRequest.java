@@ -16,4 +16,6 @@ public class AccountRequest {
 
     private String name;
 
+    private String password;
+
 }

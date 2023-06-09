@@ -3,4 +3,16 @@ GET localhost:8080/account
 
 ###
 
-GET localhost:8080/auth/login
+GET localhost:8080/auth/token
+Content-Type: application/x-www-form-urlencoded
+
+
+name=Boris&password=qwerty007
+
+###
+
+POST localhost:8080/account
+Content-Type: application/json
+
+
+{"name": "Boris", "password": "qwerty007"}
